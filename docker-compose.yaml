@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: OrderB2B
+      POSTGRES_DB: b2border
+    volumes:
+      - b2border:/var/lib/postgresql/18/data
+
+volumes:
+  b2border:
