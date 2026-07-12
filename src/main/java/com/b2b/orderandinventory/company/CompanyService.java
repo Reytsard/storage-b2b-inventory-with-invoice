@@ -6,6 +6,7 @@ import com.b2b.orderandinventory.exception.CompanyDoesNotExistException;
 import com.b2b.orderandinventory.model.Company;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 @Service
@@ -37,4 +38,7 @@ public class CompanyService {
     }
 
 
+    public Company findById(BigInteger companyId) {
+        return companyRepository.findById(companyId).orElseThrow(() -> new CompanyDoesNotExistException(companyId.toString()));
+    }
 }

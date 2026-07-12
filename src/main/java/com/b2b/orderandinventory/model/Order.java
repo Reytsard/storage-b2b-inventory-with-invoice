@@ -15,7 +15,7 @@ public class Order {
     private Integer quantity;
 
     @Column
-    @OneToMany
+    @Enumerated
     private OrderStatus status;
 
 }

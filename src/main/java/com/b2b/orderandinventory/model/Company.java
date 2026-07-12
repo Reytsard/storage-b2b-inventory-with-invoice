@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private BigInteger id;
 
     @Column(nullable = false)
     private String name;
@@ -31,7 +32,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(Long id, String name, String address, LocalDateTime createAt, LocalDateTime lastUpdatedAt) {
+    public Company(BigInteger id, String name, String address, LocalDateTime createAt, LocalDateTime lastUpdatedAt) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -39,11 +40,11 @@ public class Company {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
