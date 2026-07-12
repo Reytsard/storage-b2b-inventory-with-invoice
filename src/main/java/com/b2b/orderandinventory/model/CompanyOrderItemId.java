@@ -1,34 +1,32 @@
 package com.b2b.orderandinventory.model;
 
-import jakarta.persistence.Embeddable;
-
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.UUID;
+
+import jakarta.persistence.Embeddable;
 
 @Embeddable
 public class CompanyOrderItemId implements Serializable {
-    private BigInteger companyId;
-    private BigInteger referenceId;
+    private Long companyId;
+    private Long referenceId;
 
-    public CompanyOrderItemId(BigInteger companyId, BigInteger referenceId) {
+    public CompanyOrderItemId(Long companyId, Long referenceId) {
         this.companyId = companyId;
         this.referenceId = referenceId;
     }
 
-    public BigInteger getCompanyId() {
+    public Long getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(BigInteger companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
-    public BigInteger getReferenceId() {
+    public Long getReferenceId() {
         return referenceId;
     }
 
-    public void setReferenceId(BigInteger referenceId) {
+    public void setReferenceId(Long referenceId) {
         this.referenceId = referenceId;
     }
 }

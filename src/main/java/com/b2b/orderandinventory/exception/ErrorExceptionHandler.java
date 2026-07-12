@@ -21,6 +21,13 @@ public class ErrorExceptionHandler {
         );
     }
 
+    @ExceptionHandler(CategoryAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleCategoryAlreadyExistsException(CategoryAlreadyExistsException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request){
         return ResponseEntity.status(400).body(

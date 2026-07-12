@@ -22,7 +22,7 @@ public class OrderController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderByReferenceId(@RequestParam("cid") BigInteger companyId, @RequestParam("oid") BigInteger orderId){
+    public ResponseEntity<Order> getOrderByReferenceId(@RequestParam("cid") Long companyId, @RequestParam("oid") Long orderId){
         companyService.findById(companyId);
 //        orderService.findById(orderId); add a fucntion that will check if there is an orderId as recieved
         return ResponseEntity.ok(orderService.getOrderByReferenceId(companyId, orderId));

@@ -3,13 +3,9 @@ package com.b2b.orderandinventory.order;
 import com.b2b.orderandinventory.exception.OrderDoesNotExistException;
 import com.b2b.orderandinventory.model.CompanyOrderItemId;
 import com.b2b.orderandinventory.model.Order;
-import com.b2b.orderandinventory.model.StockInventoryItem;
 import com.b2b.orderandinventory.referenceNumber.ReferenceNumberService;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
-import java.util.List;
 
 @Service
 public class OrderService {
@@ -21,7 +17,7 @@ public class OrderService {
         this.referenceNumberService = referenceNumberService;
     }
 
-    public Order getOrderByReferenceId(BigInteger companyId, BigInteger orderId) {
+    public Order getOrderByReferenceId(Long companyId, Long orderId) {
 
         CompanyOrderItemId companyOrderItemId = new CompanyOrderItemId(companyId, orderId);
 

@@ -38,7 +38,7 @@ public class CompanyService {
     }
 
 
-    public Company findById(BigInteger companyId) {
+    public Company findById(Long companyId) {
         return companyRepository.findById(companyId).orElseThrow(() -> new CompanyDoesNotExistException(companyId.toString()));
     }
 }

@@ -1,11 +1,16 @@
 package com.b2b.orderandinventory.user;
 
-import com.b2b.orderandinventory.model.User;
-import com.b2b.orderandinventory.user.dto.CreateUserDto;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.b2b.orderandinventory.model.User;
+import com.b2b.orderandinventory.user.dto.CreateUserDto;
+
 
 @RestController
 @RequestMapping("/user")
@@ -20,5 +25,11 @@ public class UserController {
     public User createUser(@RequestBody CreateUserDto createUserDto){
         return userService.createUser(createUserDto);
     }
+
+    @GetMapping
+    public List<User> findAll() {
+        return userService.findAll();
+    }
+    
 
 }

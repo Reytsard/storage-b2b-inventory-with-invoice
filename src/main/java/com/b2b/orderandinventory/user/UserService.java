@@ -1,11 +1,14 @@
 package com.b2b.orderandinventory.user;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.b2b.orderandinventory.company.CompanyService;
 import com.b2b.orderandinventory.exception.UserAlreadyExistsException;
 import com.b2b.orderandinventory.model.Company;
 import com.b2b.orderandinventory.model.User;
 import com.b2b.orderandinventory.user.dto.CreateUserDto;
-import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
@@ -26,11 +29,16 @@ public class UserService {
             u.setLastName(createUserDto.getLastName());
             u.setMiddleName(createUserDto.getMiddleName());
             u.setCompany(company);
+            u.setEmail(createUserDto.getEmail());
 
             return userRepository.save(u);
 
         }
         throw new UserAlreadyExistsException(createUserDto.getEmail());
 
+    }
+
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 }
