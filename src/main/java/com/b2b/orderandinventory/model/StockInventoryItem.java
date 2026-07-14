@@ -22,7 +22,10 @@ public class StockInventoryItem {
     private String description;
 
     @Column
-    private Long quantity;
+    private Integer quantity;
+
+    @Column
+    private String sku;
 
     @Column
     @OneToMany
@@ -39,6 +42,13 @@ public class StockInventoryItem {
     public StockInventoryItem() {
     }
 
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
     public String getName() {
         return name;
@@ -48,10 +58,13 @@ public class StockInventoryItem {
         return description;
     }
 
-    public Long getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public LocalDateTime getCreateAt() {
         return createAt;
@@ -85,9 +98,6 @@ public class StockInventoryItem {
         this.description = description;
     }
 
-    public void setQuantity(Long quantity) {
-        this.quantity = quantity;
-    }
 
     public List<Category> getCategory() {
         return category;

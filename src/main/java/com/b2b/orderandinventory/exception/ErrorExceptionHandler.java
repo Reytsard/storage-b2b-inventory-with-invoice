@@ -28,6 +28,48 @@ public class ErrorExceptionHandler {
         );
     }
 
+    @ExceptionHandler(CompanyDoesNotExistException.class)
+    public ResponseEntity<ErrorResponse> handleCompanyDoesNotExistsException(CompanyDoesNotExistException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
+    @ExceptionHandler(OrderDoesNotExistException.class)
+    public ResponseEntity<ErrorResponse> handleOrderDoesNotExistsException(OrderDoesNotExistException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
+    @ExceptionHandler(ReferenceNumberDoesNotExistsException.class)
+    public ResponseEntity<ErrorResponse> handleReferenceDoesNotExistsException(ReferenceNumberDoesNotExistsException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(UserAlreadyExistsException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
+//    @ExceptionHandler(UserNotFoundException.class)
+//    public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException ex, HttpServletRequest request){
+//        return ResponseEntity.status(400).body(
+//                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+//        );
+//    }
+
+    @ExceptionHandler(StockItemDoesNotExistsException.class)
+    public ResponseEntity<ErrorResponse> handleStockItemDoesNotExistException(StockItemDoesNotExistsException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(Exception ex, HttpServletRequest request){
         return ResponseEntity.status(400).body(

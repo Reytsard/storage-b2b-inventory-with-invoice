@@ -5,8 +5,7 @@ import jakarta.annotation.Nullable;
 
 import java.util.List;
 
-public class CreateItemDto {
-
+public class UpdateItemDto {
     private String sku;
 
     private String name;
@@ -20,27 +19,11 @@ public class CreateItemDto {
 
     private List<Category> category;
 
-    public CreateItemDto(String sku, String name, @Nullable String desc, Integer quantity, Float amount) {
-        this.sku = sku;
-        this.name = name;
-        this.desc = desc;
-        this.quantity = quantity;
-        this.amount = amount;
-    }
-
-    public CreateItemDto() {
+    public UpdateItemDto() {
     }
 
     public String getSku() {
         return sku;
-    }
-
-    public List<Category> getCategory() {
-        return category;
-    }
-
-    public void setCategory(List<Category> category) {
-        this.category = category;
     }
 
     public void setSku(String sku) {
@@ -78,5 +61,13 @@ public class CreateItemDto {
 
     public void setAmount(Float amount) {
         this.amount = amount;
+    }
+
+    public List<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(List<Category> category) {
+        this.category = category;
     }
 }
