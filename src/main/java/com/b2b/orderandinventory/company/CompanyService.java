@@ -4,6 +4,9 @@ import com.b2b.orderandinventory.company.dto.CreateCompanyDto;
 import com.b2b.orderandinventory.exception.CompanyAlreadyExistsException;
 import com.b2b.orderandinventory.exception.CompanyDoesNotExistException;
 import com.b2b.orderandinventory.model.Company;
+import com.b2b.orderandinventory.model.Order;
+import com.b2b.orderandinventory.order.dto.CreateOrderDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -12,6 +15,7 @@ import java.util.Optional;
 @Service
 public class CompanyService {
     private final CompanyRepository companyRepository;
+
 
     public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;

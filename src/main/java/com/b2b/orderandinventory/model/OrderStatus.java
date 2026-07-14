@@ -1,9 +1,10 @@
 package com.b2b.orderandinventory.model;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import jakarta.persistence.Enumerated;
 
 public enum OrderStatus {
-    DRAFT,
+    @JsonEnumDefaultValue DRAFT,
     PENDING,
     APPROVED,
     ONTRANSIT,

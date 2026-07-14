@@ -28,7 +28,7 @@ public class StockInventoryItem {
     private String sku;
 
     @Column
-    @OneToMany
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Category> category;
 
     @Column(nullable = false, updatable = false)

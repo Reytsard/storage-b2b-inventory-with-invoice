@@ -36,13 +36,20 @@ Models:
    - createAt
    - updatedAt
 5. Order
-   - StockInventoryId
+   - id
+   - referenceId
    - companyId
-   - amountDue
-   - totalQuantity
-   - datetime
+   - items (OrderItem)
+   - orderdate
+   - createdate
+   - lastmodified
    - status
-6. ORDERSTATUS
+6. OrderItem
+   - id
+   - referenceid FK(reference_id)
+   - itemid
+   - quantity
+7. ORDERSTATUS
    - draft
    - pending
    - approved

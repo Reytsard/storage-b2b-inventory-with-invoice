@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+@RestController()
 @RequestMapping("/item")
 public class CompanyItemController {
     private final CompanyItemService companyItemService;

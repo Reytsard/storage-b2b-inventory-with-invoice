@@ -2,6 +2,7 @@ package com.b2b.orderandinventory.order;
 
 import com.b2b.orderandinventory.company.CompanyService;
 import com.b2b.orderandinventory.model.Order;
+import com.b2b.orderandinventory.order.dto.CreateOrderDto;
 import com.b2b.orderandinventory.order.dto.OrderResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,10 @@ public class OrderController {
         companyService.findById(companyId);
 //        orderService.findById(orderId); add a fucntion that will check if there is an orderId as recieved
         return ResponseEntity.ok(orderService.getOrderByReferenceId(companyId, orderId));
+    }
+
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody CreateOrderDto createOrderDto){
+        return ResponseEntity.ok(orderService.createOrder(createOrderDto));
     }
 }
