@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "item")
@@ -27,8 +28,9 @@ public class StockInventoryItem {
     @Column
     private String sku;
 
-    @OneToMany(mappedBy = "name", cascade = CascadeType.ALL)
-    private List<Category> category;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "item_id")
+    private List<Category> category = new ArrayList<>();
 
     @Column(nullable = false, updatable = false)
     @CreatedDate

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +45,9 @@ public class CompanyService {
 
     public Company findById(Long companyId) {
         return companyRepository.findById(companyId).orElseThrow(() -> new CompanyDoesNotExistException(companyId.toString()));
+    }
+
+    public List<Company> findAll() {
+        return companyRepository.findAll();
     }
 }

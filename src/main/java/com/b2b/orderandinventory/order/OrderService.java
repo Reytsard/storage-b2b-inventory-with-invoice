@@ -36,7 +36,7 @@ public class OrderService {
 
     public Order getOrderByReferenceId(Long companyId, Long orderId) {
 
-        return orderRepository.findById(companyId).orElseThrow(() -> new OrderDoesNotExistException(orderId));
+        return orderRepository.findById(orderId).orElseThrow(() -> new OrderDoesNotExistException(orderId));
 
     }
 

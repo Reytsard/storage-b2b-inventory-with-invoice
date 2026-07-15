@@ -1,20 +1,27 @@
 package com.b2b.orderandinventory.item;
 
+import com.b2b.orderandinventory.category.CategoryService;
 import com.b2b.orderandinventory.exception.StockItemAlreadyExistsException;
 import com.b2b.orderandinventory.exception.StockItemDoesNotExistsException;
 import com.b2b.orderandinventory.item.dto.CreateItemDto;
 import com.b2b.orderandinventory.item.dto.UpdateItemDto;
+import com.b2b.orderandinventory.model.Category;
 import com.b2b.orderandinventory.model.StockInventoryItem;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CompanyItemService {
     private final CompanyItemRepository companyItemRepository;
+    private final CategoryService categoryService;
 
-    public CompanyItemService(CompanyItemRepository companyItemRepository) {
+    public CompanyItemService(CompanyItemRepository companyItemRepository,
+                              CategoryService categoryService) {
         this.companyItemRepository = companyItemRepository;
+        this.categoryService = categoryService;
     }
 
     public List<StockInventoryItem> findAll(){
@@ -22,6 +29,11 @@ public class CompanyItemService {
     }
 
     public StockInventoryItem save(CreateItemDto createItemDto)  {
+        List<Category> categories = new ArrayList<>();
+        for(UUID categoryId : createItemDto.getCategoryIds()){
+            categories.add(categoryService.findById(categoryId));
+        }
+
         if(companyItemRepository.existsBySkuIgnoreCase(createItemDto.getSku())){
             throw new StockItemAlreadyExistsException(createItemDto.getSku());
         }
@@ -29,10 +41,9 @@ public class CompanyItemService {
         StockInventoryItem item = new StockInventoryItem();
         item.setSku(createItemDto.getSku());
         item.setDescription(createItemDto.getDesc());
-        item.setCategory(createItemDto.getCategory());
+        item.setCategory(categories);
         item.setName(createItemDto.getName());
         item.setQuantity(createItemDto.getQuantity());
-
 
         return companyItemRepository.save(item);
     }
@@ -42,7 +53,15 @@ public class CompanyItemService {
         StockInventoryItem item = companyItemRepository.findBySkuIgnoreCase(updateItemDto.getSku()).orElseThrow(() -> new StockItemDoesNotExistsException(updateItemDto.getSku()));
         item.setSku(updateItemDto.getSku());
         item.setDescription(updateItemDto.getDesc());
-        item.setCategory(updateItemDto.getCategory());
+
+        if (updateItemDto.getCategoryIds() != null) {
+            List<Category> categories = new ArrayList<>();
+            for (UUID categoryId : updateItemDto.getCategoryIds()) {
+                categories.add(categoryService.findById(categoryId));
+            }
+            item.setCategory(categories);
+        }
+
         item.setName(updateItemDto.getName());
         item.setQuantity(updateItemDto.getQuantity());
 

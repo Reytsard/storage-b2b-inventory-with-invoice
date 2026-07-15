@@ -1,11 +1,14 @@
 package com.b2b.orderandinventory.category;
 
 import com.b2b.orderandinventory.exception.CategoryAlreadyExistsException;
+import com.b2b.orderandinventory.exception.CategoryDoesNotExistException;
 import org.springframework.stereotype.Service;
 
 import com.b2b.orderandinventory.model.Category;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CategoryService {
@@ -26,5 +29,9 @@ public class CategoryService {
 
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public Category findById(UUID categoryId) {
+        return categoryRepository.findById(categoryId).orElseThrow(() -> new CategoryDoesNotExistException(categoryId));
     }
 }

@@ -1,12 +1,11 @@
 package com.b2b.orderandinventory.item.dto;
 
-import com.b2b.orderandinventory.model.Category;
 import jakarta.annotation.Nullable;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CreateItemDto {
-
     private String sku;
 
     private String name;
@@ -18,7 +17,7 @@ public class CreateItemDto {
 
     private Float amount;
 
-    private List<Category> category;
+    private List<UUID> categoryIds;
 
     public CreateItemDto(String sku, String name, @Nullable String desc, Integer quantity, Float amount) {
         this.sku = sku;
@@ -31,17 +30,18 @@ public class CreateItemDto {
     public CreateItemDto() {
     }
 
+    public List<UUID> getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(List<UUID> categoryIds) {
+        this.categoryIds = categoryIds;
+    }
+
     public String getSku() {
         return sku;
     }
 
-    public List<Category> getCategory() {
-        return category;
-    }
-
-    public void setCategory(List<Category> category) {
-        this.category = category;
-    }
 
     public void setSku(String sku) {
         this.sku = sku;

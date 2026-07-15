@@ -1,6 +1,7 @@
 package com.b2b.orderandinventory.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -62,6 +63,14 @@ public class ErrorExceptionHandler {
 //                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
 //        );
 //    }
+
+    @ExceptionHandler(CategoryDoesNotExistException.class)
+    public ResponseEntity<ErrorResponse> handleCategoryDoesNotExistException(CategoryDoesNotExistException ex, HttpServletRequest request){
+        return ResponseEntity.status(400).body(
+                new ErrorResponse(400, ex.getMessage(), request.getRequestURI())
+        );
+    }
+
 
     @ExceptionHandler(StockItemDoesNotExistsException.class)
     public ResponseEntity<ErrorResponse> handleStockItemDoesNotExistException(StockItemDoesNotExistsException ex, HttpServletRequest request){
