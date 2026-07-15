@@ -9,7 +9,7 @@ public class OrderItem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "reference_id")
+    @JoinColumn(name = "items")
     private Order order;
 
     @ManyToOne

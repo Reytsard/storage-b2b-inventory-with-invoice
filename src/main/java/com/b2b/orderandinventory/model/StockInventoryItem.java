@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "items")
+@Entity(name = "item")
 @EntityListeners(AuditingEntityListener.class)
 public class StockInventoryItem {
     @Id
@@ -27,8 +27,7 @@ public class StockInventoryItem {
     @Column
     private String sku;
 
-    @Column
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "name", cascade = CascadeType.ALL)
     private List<Category> category;
 
     @Column(nullable = false, updatable = false)

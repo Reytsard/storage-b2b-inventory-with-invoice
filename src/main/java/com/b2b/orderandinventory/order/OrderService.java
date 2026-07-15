@@ -36,11 +36,8 @@ public class OrderService {
 
     public Order getOrderByReferenceId(Long companyId, Long orderId) {
 
-        CompanyOrderItemId companyOrderItemId = new CompanyOrderItemId(companyId, orderId);
+        return orderRepository.findById(companyId).orElseThrow(() -> new OrderDoesNotExistException(orderId));
 
-        Order order = orderRepository.findById(companyOrderItemId).orElseThrow(() -> new OrderDoesNotExistException(orderId));
-
-        return order;
     }
 
     public Order createOrder(CreateOrderDto createOrderDto) {
@@ -56,10 +53,7 @@ public class OrderService {
             oi.setItem(item);
             oi.setOrder(o);
             oi.setQuantity(entry.getValue());
-            oi = orderItemRepository.save(oi);
             o.getItems().add(oi);
-            String referenceId = referenceNumberService.generateReferenceNumber();
-            o.setReferenceId(());
         }
 
         o.setStatus(OrderStatus.PENDING);

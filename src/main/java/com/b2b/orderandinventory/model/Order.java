@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "orderList")
@@ -17,8 +18,8 @@ public class Order {
     private Long referenceId;
 
 
-    @OneToMany(mappedBy = "item_id")
-    private List<OrderItem> items;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> items = new ArrayList<>();
 
     @Column
     @Enumerated(EnumType.STRING)
